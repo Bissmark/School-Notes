@@ -6,16 +6,6 @@ import NotesDetail from './NotesDetail';
 
 export default function NotesList ({notes, deleteNote}) {
     const [reverse, setReverse] = useState(false);
-    const [note, setNote] = useState({});
-    
-    // useEffect(() => {
-    //     async function getNotes() {
-    //         const note = await notesServices.getNoteDetails();
-    //         console.log(note)
-    //         setNote(note);
-    //     }
-    //     getNotes();
-    // }, []);
 
     if (notes.length === 0) {
         return <p>No notes yet!</p>

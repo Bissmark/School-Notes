@@ -1,10 +1,17 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 import * as notesServices from '../utilities/notes-service';
 
 const NotesDetail = ({ notes, setNotes }) => {
+    const [singleNote, setSingleNote] = useState({});
     const { id } = useParams();
-    const note = notes.find((n) => n._id === id);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        notesServices.getNoteDetails(id).then((note) => {
+            setSingleNote(note);
+        });
+    }, );
 
     async function deleteNote(id) {
         await notesServices.deleteNote(id);
@@ -14,18 +21,18 @@ const NotesDetail = ({ notes, setNotes }) => {
     }
 
     return (
-        <div key={note._id} className='note'>
-            <button className='delete-button' onClick={ () => deleteNote(note._id) }>&times;</button>
+        <div key={singleNote._id} className='note'>
+            <button className='delete-button' onClick={ () => deleteNote(singleNote._id) }>&times;</button>
             
             <ul>
-                <li>{ note.name }</li>
-                <li>{ note.category }</li>
-                <li>{ note.time }</li>
-                <li>{ note.priority }</li>
-                <li>{ new Date(note.createdAt).toLocaleString() }:</li>
-                <img src={note.image} alt="" />
+                <li>{ singleNote.name }</li>
+                <li>{ singleNote.category }</li>
+                <li>{ singleNote.time }</li>
+                <li>{ singleNote.priority }</li>
+                <li>{ new Date(singleNote.createdAt).toLocaleString() }:</li>
+                <img src={singleNote.image} alt="" />
             </ul>
-            <Link to={`edit`}>Edit</Link>
+            <Link to={'edit'}>Edit</Link>
         </div>
     )
 }

@@ -15,11 +15,9 @@ export async function getNote(id) {
 
 
 export async function deleteNote(id) {
-    console.log('delete')
     return sendRequest(`${ BASE_URL }/${ id }`, 'DELETE');
 }
 
 export async function updateNote(note) {
-    console.log(`${ BASE_URL }/${ note._id }`)
     return sendRequest(`${ BASE_URL }/${ note._id }`, 'PUT', note);
 }

@@ -1,48 +1,22 @@
-import { useState, useEffect } from 'react';
-
-import * as notesServices from '../utilities/notes-service';
-
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NotesList from '../components/NotesList';
-import NoteForm from '../components/NotesForm';
+import * as notesServices from '../utilities/notes-service';
 import './NotesPage.css';
 
 export default function NotesPage({ notes, setNotes }) {
-    const [image, setImage] = useState('')
-
-    // const uploadImage = () => {
-	// 	const data = new FormData()
-	// 	data.append("file", image)
-	// 	data.append("upload_preset", "react-cloudinary")
-	// 	data.append("cloud_name", "bissmark")
-	// 	fetch("https://api.cloudinary.com/v1_1/bissmark/image/upload",{
-	// 		method:"post",
-	// 		body: data
-	// 	}).then(res => res.json())
-	// 	.then(data => {
-	// 		setUrl(data.url)
-    //         console.log(data.url)
-	// 	}).catch(err => console.log(err))
-	// }
-
-    async function addNote(note) {
-        const newNote = await notesServices.createNote(note);
-        console.log(newNote);
-        setNotes([...notes, newNote]);
-    }
 
     useEffect(() => {
         notesServices.getNotes().then((notes) => {
             setNotes(notes);
         });
-    }, []);
+    }, [setNotes]);
 
     return (
         <>
-            <h1>
-                NotesPage
-            </h1>
+            <h1>NotesPage</h1>
             <div>
-                <NoteForm addNote={ addNote } setImage={setImage} image={image} />
+                <Link to='/notes/new'>Add Note</Link>
             </div>
             <div className='grid-container'>
                 <div className='grid-item-1'>

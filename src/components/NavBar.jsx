@@ -20,17 +20,17 @@ export default function NavBar({ user, setUser }) {
         <span className='tooltiptext'>New Note</span>
       </Link>
       {/* <span>Welcome, {user.name}</span> */}
-      <Link className='link-3' to="" onClick={handleLogOut}>
+      <Link className='link-3' onClick={handleLogOut}>
         <AiFillAliwangwang />
-        <span className='tooltiptext'>Link 3</span>
+        <span className='tooltiptext'>Logout</span>
       </Link>
       <Link className='link-4' to="/login">
         <AiFillAliwangwang />
-        <span className='tooltiptext'>Link 4</span>
+        <span className='tooltiptext'>Login</span>
       </Link>
       <Link className='link-5' to="/signup">
         <AiFillAliwangwang />
-        <span className='tooltiptext'>Link 5</span>
+        <span className='tooltiptext'>Signup</span>
       </Link>
     </nav>
   );

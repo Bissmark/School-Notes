@@ -54,8 +54,8 @@ async function deleteNote(req, res) {
 
 async function update(req, res) {
     try {
-        let note = await Note.findByIdAndUpdate(req.params.id, req.body)
-        note.save();
+        const note = await Note.findByIdAndUpdate(req.params.id, req.body);
+        res.json(note);
     } catch (err) {
         console.log(err)
         res.status(400).json(err);
