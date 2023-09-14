@@ -1,4 +1,4 @@
-.link-1 {
+.link {
     color: #fff;
     font-size: 1.5rem;
     margin: 0 1rem;
@@ -28,82 +28,6 @@
     right: -20px;
 }
 
-.link-1:hover .tooltiptext {
-    visibility: visible;
-}
-  
-.link-2 {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin: 0 1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: #000;
-    position: relative;
-    &:hover {
-        background-color: #fff;
-        color: #000;
-    }
-}
-
-.link-2:hover .tooltiptext {
-    visibility: visible;
-}
-  
-.link-3 {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin: 0 1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: #000;
-    position: relative;
-    &:hover {
-      background-color: #fff;
-      color: #000;
-    }
-}
-
-.link-3:hover .tooltiptext {
-    visibility: visible;
-}
-  
-.link-4 {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin: 0 1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: #000;
-    position: relative;
-    &:hover {
-      background-color: #fff;
-      color: #000;
-    }
-}
-
-.link-4:hover .tooltiptext {
-    visibility: visible;
-}
-  
-.link-5 {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin: 0 1rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    background-color: #000;
-    position: relative;
-    &:hover {
-      background-color: #fff;
-      color: #000;
-    }
-}
-
-.link-5:hover .tooltiptext {
+.link:hover .tooltiptext {
     visibility: visible;
 }

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const categorySchema = new Schema(
     {
-        text: {
+        name: {
             type: String, 
             required: true
         },
@@ -16,4 +16,4 @@ const categorySchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model('Note', categorySchema);
+module.exports = mongoose.model('Category', categorySchema);

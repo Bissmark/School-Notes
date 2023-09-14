@@ -11,24 +11,27 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link className='link-1' to="/notes">
+      <Link className='link' to="/notes">
         <AiFillAliwangwang />
         <span className='tooltiptext'>Notes</span>
       </Link>
-      <Link className='link-2' to="/notes/new">
+      <Link className='link' to="/notes/new">
         <AiFillAliwangwang />
         <span className='tooltiptext'>New Note</span>
       </Link>
-      {/* <span>Welcome, {user.name}</span> */}
-      <Link className='link-3' onClick={handleLogOut}>
+      <Link className='link' to="/categories/new">
+        <AiFillAliwangwang />
+        <span className='tooltiptext'>New Category</span>
+      </Link>
+      <Link className='link' onClick={handleLogOut}>
         <AiFillAliwangwang />
         <span className='tooltiptext'>Logout</span>
       </Link>
-      <Link className='link-4' to="/login">
+      <Link className='link' to="/login">
         <AiFillAliwangwang />
         <span className='tooltiptext'>Login</span>
       </Link>
-      <Link className='link-5' to="/signup">
+      <Link className='link' to="/signup">
         <AiFillAliwangwang />
         <span className='tooltiptext'>Signup</span>
       </Link>

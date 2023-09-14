@@ -8,15 +8,7 @@ import NotesDetail from './components/NotesDetail';
 import NoteForm from './components/NotesForm';
 import './App.css';
 import EditForm from './components/EditForm';
-
-const categories = [
-    'CRC',
-    'Data',
-    'Conf.',
-    'PL',
-    'APCI',
-    'Other'
-];
+import CategoryForm from './components/CategoryForm';
 
 const times = [
     '1',
@@ -33,6 +25,7 @@ const priorities = [
 function App() {
   const [user, setUser] = useState(getUser());
   const [notes, setNotes] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [image, setImage] = useState('');
 
   const uploadImage = () => {
@@ -53,10 +46,11 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/notes" element={<NotesPage setNotes={setNotes} notes={notes} />} />
-            <Route path="/notes/new" element={<NoteForm uploadImage={uploadImage} notes={notes} setNotes={setNotes} image={image} setImage={setImage} categories={categories} times={times} priorities={priorities} />} />
+            <Route path="/notes" element={<NotesPage setNotes={setNotes} notes={notes} categories={categories} setCategories={setCategories} />} />
+            <Route path="/notes/new" element={<NoteForm uploadImage={uploadImage} notes={notes} setNotes={setNotes} image={image} setImage={setImage} times={times} priorities={priorities} categories={categories} />} />
             <Route path="/notes/:id" element={<NotesDetail notes={notes} setNotes={setNotes} />} />
-            <Route path="/notes/:id/edit" element={<EditForm uploadImage={uploadImage} notes={notes} setImage={setImage} categories={categories} times={times} priorities={priorities} />} />
+            <Route path="/notes/:id/edit" element={<EditForm uploadImage={uploadImage} notes={notes} setImage={setImage} times={times} priorities={priorities} />} />
+            <Route path="/categories/new" element={<CategoryForm categories={categories} setCategories={setCategories} />} />
             <Route path="*" element={<Navigate to="/notes" />} />
           </Routes>
         </>

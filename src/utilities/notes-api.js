@@ -5,7 +5,7 @@ export async function createNote(noteText) {
     return sendRequest(BASE_URL, 'POST', noteText);
 }
 
-export async function getNotes () {
+export async function getNotes() {
     return sendRequest(BASE_URL);
 }
 

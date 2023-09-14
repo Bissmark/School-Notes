@@ -11,7 +11,7 @@ const NotesDetail = ({ notes, setNotes }) => {
         notesServices.getNoteDetails(id).then((note) => {
             setSingleNote(note);
         });
-    }, );
+    }, []);
 
     async function deleteNote(id) {
         await notesServices.deleteNote(id);
