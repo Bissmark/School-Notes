@@ -1,17 +1,17 @@
-const Note = require('../../models/note');
+const Task = require('../../models/task');
 
 module.exports = {
     index,
     create,
     show,
-    delete: deleteNote,
+    delete: deleteTask,
     update
 };
 
 async function index(req, res) {
     try {
-        const notes = await Note.find({user: req.user._id});
-        res.json(notes);
+        const tasks = await Task.find({user: req.user._id});
+        res.json(tasks);
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
@@ -21,7 +21,7 @@ async function index(req, res) {
 async function create(req, res) {
     try {
         console.log(req.body)
-        const note = await Note.create({
+        const task = await Task.create({
             name: req.body.name,
             // category: req.body.category,
             // category: req.category.id,
@@ -30,7 +30,7 @@ async function create(req, res) {
             priority: req.body.priority,
             image: req.body.image
         });
-        res.json(note);
+        res.json(task);
     } catch (err) {
         console.log(err)
         res.status(400).json(err);
@@ -39,8 +39,8 @@ async function create(req, res) {
 
 async function show(req, res) {
     try {
-        const note = await Note.findById(req.params.id);
-        res.json(note);
+        const task = await Task.findById(req.params.id);
+        res.json(task);
     } catch (err) {
         console.log(err);
         res.status(400).json(err);
@@ -49,9 +49,9 @@ async function show(req, res) {
 
 
 
-async function deleteNote(req, res) {
+async function deleteTask(req, res) {
     try {
-        await Note.deleteOne({_id: req.params.id, user: req.user._id});
+        await Task.deleteOne({_id: req.params.id, user: req.user._id});
         console.log('delete');
         res.json(true);
     } catch (err) {
@@ -61,8 +61,8 @@ async function deleteNote(req, res) {
 
 async function update(req, res) {
     try {
-        const note = await Note.findByIdAndUpdate(req.params.id, req.body);
-        res.json(note);
+        const task = await Task.findByIdAndUpdate(req.params.id, req.body);
+        res.json(task);
     } catch (err) {
         console.log(err)
         res.status(400).json(err);

@@ -25,7 +25,7 @@ const CategoryForm = ({ categories, setCategories}) => {
         addCategory(newCategory);
         console.log(newCategory);
         setNewCategory({name: ''});
-        navigate('/notes')
+        navigate('/tasks')
     }
 
     return (

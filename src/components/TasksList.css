@@ -1,9 +1,9 @@
-.note {
+.task {
     position: relative;
     display: inline-block;
 }
 
-.note button {
+.task button {
     position: absolute;
     top: 0;
     left: 0;

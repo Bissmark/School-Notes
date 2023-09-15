@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import './NotesList.css';
+import './TasksList.css';
 import { Link } from 'react-router-dom';
 
-export default function NotesList ({notes, deleteNote}) {
+export default function TasksList ({tasks}) {
     const [reverse, setReverse] = useState(false);
 
-    if (notes.length === 0) {
-        return <p>No notes yet!</p>
+    if (tasks.length === 0) {
+        return <p>No tasks yet!</p>
     }
 
-    const notesList = notes.map(n => (
-        <div key={n._id} className='note'>
+    const tasksList = tasks.map(t => (
+        <div key={t._id} className='task'>
             <ul>
-                <Link to={n._id}><li>{ n.name }</li></Link>
+                <Link to={t._id}><li>{ t.name }</li></Link>
             </ul>
         </div>
     ));
@@ -23,7 +23,7 @@ export default function NotesList ({notes, deleteNote}) {
                 ▲ | ▼ 
             </button> */}
             {
-                reverse ? notesList.reverse() : notesList
+                reverse ? tasksList.reverse() : tasksList
             }
         </div>
     )

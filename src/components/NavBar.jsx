@@ -11,13 +11,13 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link className='link' to="/notes">
+      <Link className='link' to="/tasks">
         <AiFillAliwangwang />
-        <span className='tooltiptext'>Notes</span>
+        <span className='tooltiptext'>Tasks</span>
       </Link>
-      <Link className='link' to="/notes/new">
+      <Link className='link' to="/tasks/new">
         <AiFillAliwangwang />
-        <span className='tooltiptext'>New Note</span>
+        <span className='tooltiptext'>New Task</span>
       </Link>
       <Link className='link' to="/categories/new">
         <AiFillAliwangwang />

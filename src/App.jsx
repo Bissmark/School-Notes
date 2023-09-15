@@ -3,9 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUser } from './utilities/users-service';
 import AuthPage from './components/AuthPage';
 import NavBar from './components/NavBar';
-import NotesPage from './components/NotesPage';
-import NotesDetail from './components/NotesDetail';
-import NoteForm from './components/NotesForm';
+import TasksPage from './components/TasksPage';
+import TasksDetail from './components/TasksDetail';
+import TaskForm from './components/TasksForm';
 import './App.css';
 import EditForm from './components/EditForm';
 import CategoryForm from './components/CategoryForm';
@@ -24,21 +24,8 @@ const priorities = [
 
 function App() {
   const [user, setUser] = useState(getUser());
-  const [notes, setNotes] = useState([]);
+  const [tasks, setTasks] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [image, setImage] = useState('');
-
-  const uploadImage = () => {
-		const data = new FormData()
-		data.append("file", image)
-		data.append("upload_preset", "react-cloudinary")
-		data.append("cloud_name", "bissmark")
-		return fetch("https://api.cloudinary.com/v1_1/bissmark/image/upload",{
-			method: "post",
-			body: data
-		}).then(res => res.json())
-        .catch(err => console.log(err))
-	}
 
   return (
     <div className="container">
@@ -46,12 +33,12 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-            <Route path="/notes" element={<NotesPage setNotes={setNotes} notes={notes} categories={categories} setCategories={setCategories} />} />
-            <Route path="/notes/new" element={<NoteForm uploadImage={uploadImage} notes={notes} setNotes={setNotes} image={image} setImage={setImage} times={times} priorities={priorities} categories={categories} />} />
-            <Route path="/notes/:id" element={<NotesDetail notes={notes} setNotes={setNotes} />} />
-            <Route path="/notes/:id/edit" element={<EditForm uploadImage={uploadImage} notes={notes} setImage={setImage} times={times} priorities={priorities} />} />
+            <Route path="/tasks" element={<TasksPage setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} />} />
+            <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} times={times} priorities={priorities} categories={categories} />} />
+            <Route path="/tasks/:id" element={<TasksDetail tasks={tasks} setTasks={setTasks} />} />
+            <Route path="/tasks/:id/edit" element={<EditForm tasks={tasks} times={times} priorities={priorities} />} />
             <Route path="/categories/new" element={<CategoryForm categories={categories} setCategories={setCategories} />} />
-            <Route path="*" element={<Navigate to="/notes" />} />
+            <Route path="*" element={<Navigate to="/tasks" />} />
           </Routes>
         </>
         :

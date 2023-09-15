@@ -1,9 +1,9 @@
 import { useState } from "react";
-import * as notesServices from '../utilities/notes-service';
+import * as tasksServices from '../utilities/tasks-service';
 import { useNavigate } from 'react-router-dom';
 
-export default function NoteForm ({notes, setNotes, times, priorities, categories }) {
-    const [newNote, setNewNote] = useState({
+export default function TaskForm ({tasks, setTasks, times, priorities, categories }) {
+    const [newTask, setNewTask] = useState({
         name: '',
         time: '',
         category: '',
@@ -14,9 +14,9 @@ export default function NoteForm ({notes, setNotes, times, priorities, categorie
     const navigate = useNavigate();
     const [image, setImage] = useState('');
 
-    async function addNote(note) {
-        const newNote = await notesServices.createNote(note);
-        setNotes([...notes, newNote]);
+    async function addTask(task) {
+        const newtask = await tasksServices.createTask(task);
+        setTasks([...tasks, newtask]);
     }
 
     const uploadImage = (image) => {
@@ -32,7 +32,7 @@ export default function NoteForm ({notes, setNotes, times, priorities, categorie
 	}
 
     const _handleChange = (e) => {
-        setNewNote({...newNote, [e.target.name]: e.target.value});
+        setNewTask({...newTask, [e.target.name]: e.target.value});
     }
 
     const _handleImageChange = (e) => {
@@ -42,41 +42,42 @@ export default function NoteForm ({notes, setNotes, times, priorities, categorie
     const _handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await uploadImage(image).then((data) => {
-                console.log(data.url);
-                newNote.image = data.url;
-                console.log(newNote);
-            });
+            if (image) {
+                const data = await uploadImage(image);
+                newTask.image = data.url;
+            } else {
+                setImage('');
+            }
             setImage('');
         } catch (error) {
             console.log(error);
         }
-        addNote(newNote);
-        navigate('/notes')
+        addTask(newTask);
+        navigate('/tasks')
     }
 
     return (
         <div>
-            <h1>Add Note</h1>
+            <h1>Add Task</h1>
             <form onSubmit={ _handleSubmit }>
-                <input type="text" name="name" value={newNote.name}  onChange={_handleChange} required />
-                <select name="category" value={newNote.category} onChange={_handleChange }>
+                <input type="text" name="name" value={newTask.name}  onChange={_handleChange} required />
+                <select name="category" value={newTask.category} onChange={_handleChange }>
                     {categories.map((category, index) => (
                         <option key={index} value={category.name}>{category.name}</option>
                     ))}
                 </select>
-                <select name="time" value={newNote.time} onChange={_handleChange }>
+                <select name="time" value={newTask.time} onChange={_handleChange }>
                     {times.map((time, index) => (
                         <option key={index} value={time} defaultValue={time}>{time}</option>
                     ))}
                 </select>
-                <select name="priority" value={newNote.priority} onChange={_handleChange }>
+                <select name="priority" value={newTask.priority} onChange={_handleChange }>
                     {priorities.map((priority, index) => (
                         <option key={index} value={priority}>{priority}</option>
                     ))}
                 </select>
                 <input type="file" onChange={_handleImageChange} />
-                <button>Add note</button>
+                <button>Add Task</button>
             </form>
         </div>
     );
