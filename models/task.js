@@ -11,10 +11,10 @@ const taskSchema = new Schema({
             ref: 'User',
             required: true
         },
-        category: {
+        category: [{
             type: Schema.Types.ObjectId,
             ref: 'Category'
-        },
+        }],
         time: {
             type: String,
         },

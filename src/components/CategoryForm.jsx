@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as categoriesServices from "../utilities/categories-service";
 
-const CategoryForm = ({ categories, setCategories}) => {
+const CategoryForm = ({ tasks, categories, setCategories}) => {
     const [newCategory, setNewCategory] = useState({
         name: '',
     });

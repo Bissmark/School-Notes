@@ -32,7 +32,7 @@ const TasksDetail = ({ tasks, setTasks }) => {
                 <li>{ new Date(singleTask.createdAt).toLocaleString() }:</li>
                 <img src={singleTask.image} alt="" />
             </ul>
-            <Link to={'edit'}>Edit</Link>
+            <Link to={`/tasks/${singleTask._id}/edit`}>Edit</Link>
         </div>
     )
 }

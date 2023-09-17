@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { AiFillAliwangwang } from 'react-icons/ai';
 import * as userService from '../utilities/users-service';
 import './NavBar.css';
+import SearchBar from './SearchBar';
 
-export default function NavBar({ user, setUser }) {
+export default function NavBar({ user, setUser, setSearchQuery }) {
   function handleLogOut() {
     userService.logOut();
     setUser(null);
@@ -11,6 +12,7 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
+      <SearchBar setSearchQuery={setSearchQuery} />
       <Link className='link' to="/tasks">
         <AiFillAliwangwang />
         <span className='tooltiptext'>Tasks</span>

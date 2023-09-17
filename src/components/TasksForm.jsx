@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as tasksServices from '../utilities/tasks-service';
 import { useNavigate } from 'react-router-dom';
 
-export default function TaskForm ({tasks, setTasks, times, priorities, categories }) {
+export default function TaskForm ({tasks, setTasks, times, priorities, categories, uploadImage }) {
     const [newTask, setNewTask] = useState({
         name: '',
         time: '',
@@ -18,18 +18,6 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
         const newtask = await tasksServices.createTask(task);
         setTasks([...tasks, newtask]);
     }
-
-    const uploadImage = (image) => {
-		const data = new FormData()
-		data.append("file", image)
-		data.append("upload_preset", "react-cloudinary")
-		data.append("cloud_name", "bissmark")
-		return fetch("https://api.cloudinary.com/v1_1/bissmark/image/upload",{
-			method: "post",
-			body: data
-		}).then(res => res.json())
-        .catch(err => console.log(err))
-	}
 
     const _handleChange = (e) => {
         setNewTask({...newTask, [e.target.name]: e.target.value});

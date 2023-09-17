@@ -11,3 +11,9 @@ export async function getCategories() {
     const categories = await categoriesAPI.getCategories();
     return categories;
 }
+
+// Show
+export async function getCategory(categoryId) {
+    const category = await categoriesAPI.getCategory(categoryId);
+    return category;
+}

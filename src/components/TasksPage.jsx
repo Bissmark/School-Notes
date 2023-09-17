@@ -5,7 +5,7 @@ import * as tasksServices from '../utilities/tasks-service';
 import * as categoriesServices from '../utilities/categories-service';
 import './TasksPage.css';
 
-export default function TasksPage({ tasks, setTasks, setCategories, categories }) {
+export default function TasksPage({ tasks, setTasks, setCategories, categories, searchQuery }) {
 
     useEffect(() => {
         tasksServices.getTasks().then((tasks) => {
@@ -27,7 +27,7 @@ export default function TasksPage({ tasks, setTasks, setCategories, categories }
             </div>
             <div className='grid-container'>
                 <div className='grid-item' style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)', borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
-                    {categories.map((category) => (
+                    {categories.filter((category) => category.name.toLowerCase().includes(searchQuery.toLowerCase())).map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
                             <TasksList tasks={tasks} />
@@ -35,7 +35,7 @@ export default function TasksPage({ tasks, setTasks, setCategories, categories }
                     ))}
                 </div>
                 <div className='grid-item' style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)'}}>
-                    {categories.map((category) => (
+                    {categories.filter((category) => category.name.toLowerCase().includes(searchQuery.toLowerCase())).map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
                             <TasksList tasks={tasks} />
@@ -43,7 +43,7 @@ export default function TasksPage({ tasks, setTasks, setCategories, categories }
                     ))}
                 </div>
                 <div className='grid-item' style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
-                    {categories.map((category) => (
+                    {categories.filter((category) => category.name.toLowerCase().includes(searchQuery.toLowerCase())).map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
                             <TasksList tasks={tasks} />
@@ -51,7 +51,7 @@ export default function TasksPage({ tasks, setTasks, setCategories, categories }
                     ))}
                 </div>
                 <div className='grid-item'>
-                    {categories.map((category) => (
+                    {categories.filter((category) => category.name.toLowerCase().includes(searchQuery.toLowerCase())).map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
                             <TasksList tasks={tasks} />

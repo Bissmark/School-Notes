@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import * as tasksServices from '../utilities/tasks-service';
 
-const EditForm = ({ tasks, setImage, priorities, times, categories, uploadImage }) => {
+const EditForm = ({ tasks, priorities, times, categories, uploadImage }) => {
     let { id } = useParams();
     const task = tasks.find((n) => n._id === id);
     const [editedTask, setEditedTask] = useState(task);
+    const [image, setImage] = useState('');
     const navigate = useNavigate();
 
     async function updateTask(task) {
@@ -22,8 +23,17 @@ const EditForm = ({ tasks, setImage, priorities, times, categories, uploadImage 
 
     async function _handleSubmit(e) {
         e.preventDefault();
-        const data = await uploadImage();
-        editedTask.image = data.url;
+        try {
+            if (image) {
+                const data = await uploadImage();
+                editedTask.image = data.url;
+            } else {
+                setImage('');
+            }
+            setImage('');
+        } catch (error) {
+            console.log(error);
+        }
         updateTask(editedTask);
         navigate(`/tasks/${task._id}`);
     }
@@ -34,7 +44,7 @@ const EditForm = ({ tasks, setImage, priorities, times, categories, uploadImage 
                 <input type="text" name="name" value={editedTask.name}  onChange={_handleChange} required />
                 <select name="category" value={editedTask.category} onChange={_handleChange }>
                     {categories.map((category, index) => (
-                        <option key={index} value={category}>{category}</option>
+                        <option key={index} value={category.name}>{category.name}</option>
                     ))}
                 </select>
                 <select name="time" value={editedTask.time} onChange={_handleChange }>
