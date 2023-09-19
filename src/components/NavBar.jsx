@@ -13,9 +13,9 @@ export default function NavBar({ user, setUser, setSearchQuery }) {
   return (
     <nav>
       <SearchBar setSearchQuery={setSearchQuery} />
-      <Link className='link' to="/tasks">
+      <Link className='link' to="/">
         <AiFillAliwangwang />
-        <span className='tooltiptext'>Tasks</span>
+        <span className='tooltiptext'>Home</span>
       </Link>
       <Link className='link' to="/tasks/new">
         <AiFillAliwangwang />

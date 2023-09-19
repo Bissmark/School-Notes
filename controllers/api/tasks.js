@@ -10,9 +10,11 @@ module.exports = {
 
 async function index(req, res) {
     try {
-        const tasks = await Task.find({user: req.user._id});
-        res.json(tasks);
-    } catch (err) {
+        await Task.find({user: req.user._id}).populate('category').exec().then(tasks => {
+            console.log(tasks);
+            res.json(tasks);
+        });
+        } catch (err) {
         console.log(err);
         res.status(400).json(err);
     }

@@ -11,6 +11,8 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
         date: '',
         image: ''
     });
+    console.log(categories)
+
     const navigate = useNavigate();
     const [image, setImage] = useState('');
 
@@ -29,19 +31,15 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
     
     const _handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            if (image) {
-                const data = await uploadImage(image);
-                newTask.image = data.url;
-            } else {
-                setImage('');
-            }
+        if (image) {
+            const data = await uploadImage(image);
+            newTask.image = data.url;
+        } else {
             setImage('');
-        } catch (error) {
-            console.log(error);
         }
+        setImage('');
         addTask(newTask);
-        navigate('/tasks')
+        navigate('/')
     }
 
     return (
@@ -51,7 +49,7 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
                 <input type="text" name="name" value={newTask.name}  onChange={_handleChange} required />
                 <select name="category" value={newTask.category} onChange={_handleChange }>
                     {categories.map((category, index) => (
-                        <option key={index} value={category.name}>{category.name}</option>
+                        <option key={index} value={category.id}>{category.name}</option>
                     ))}
                 </select>
                 <select name="time" value={newTask.time} onChange={_handleChange }>

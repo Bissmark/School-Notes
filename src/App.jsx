@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { getUser } from './utilities/users-service';
 import AuthPage from './components/AuthPage';
 import NavBar from './components/NavBar';
-import TasksPage from './components/TasksPage';
+import HomePage from './components/HomePage';
 import TasksDetail from './components/TasksDetail';
 import TaskForm from './components/TasksForm';
 import EditForm from './components/EditForm';
@@ -29,17 +29,19 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const getCategories = async () => {
-        try {
-            const response = await categoriesServices.getCategories();
-            console.log(response);
-            const categoryData = await response.json();
-            setCategories([...categories, categoryData]);
-            setTasks(categoryData.tasks);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+  // const getCategories = async () => {
+  //       try {
+  //           const response = await categoriesServices.getCategories();
+  //           console.log(response)
+  //           const categoryData = await response.json();
+  //           setCategories([...categories, response]);
+  //           console.log(categories)
+  //           setTasks(response.tasks);
+  //           console.log(tasks)
+  //       } catch (error) {
+  //           console.log(error);
+  //       }
+  //   };
 
   const uploadImage = async (image) => {
 		const data = new FormData()
@@ -53,9 +55,9 @@ function App() {
       .catch(err => console.log(err))
 	}
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+  // useEffect(() => {
+  //   getCategories();
+  // }, []);
 
   return (
     <div className="container">
@@ -63,7 +65,7 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} setSearchQuery={setSearchQuery} />
           <Routes>
-            <Route path="/tasks" element={<TasksPage searchQuery={searchQuery} setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} />} />
+            <Route path="/" element={<HomePage searchQuery={searchQuery} setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} />} />
             <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} times={times} priorities={priorities} categories={categories} uploadImage={uploadImage} />} />
             <Route path="/tasks/:id" element={<TasksDetail tasks={tasks} setTasks={setTasks} />} />
             <Route path="/tasks/:id/edit" element={<EditForm categories={categories} setCategories={setCategories} tasks={tasks} times={times} priorities={priorities} uploadImage={uploadImage} />} />

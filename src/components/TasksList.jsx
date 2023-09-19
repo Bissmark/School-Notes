@@ -2,17 +2,18 @@ import { useState } from 'react';
 import './TasksList.css';
 import { Link } from 'react-router-dom';
 
-export default function TasksList ({tasks}) {
+export default function TasksList ({tasks, searchQuery}) {
     const [reverse, setReverse] = useState(false);
 
     if (tasks.length === 0) {
         return <p>No tasks yet!</p>
     }
 
-    const tasksList = tasks.map(t => (
+    const tasksList = tasks.filter((task) => 
+        task.name.toLowerCase().includes(searchQuery.toLowerCase())).map(t => (
         <div key={t._id} className='task'>
             <ul>
-                <Link to={t._id}><li>{ t.name }</li></Link>
+                <Link to={`/tasks/${t._id}`}><li>{ t.name }</li></Link>
             </ul>
         </div>
     ));
