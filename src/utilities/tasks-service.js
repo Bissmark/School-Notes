@@ -29,3 +29,10 @@ export async function updateTask(id) {
     const task = await tasksAPI.updateTask(id);
     return task;
 }
+
+// AddTaskToCategory
+export async function addTaskToCategory(categoryId, taskText) {
+    console.log(categoryId, taskText)
+    const newTask = await tasksAPI.addTaskToCategory(categoryId, taskText);
+    return newTask;
+}

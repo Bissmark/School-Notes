@@ -7,7 +7,7 @@ const AuthPage = ({ setUser }) => {
 
     return (
         <main>
-            <h1>AuthPage</h1>
+            <h1>{showSignup ? 'Log In Page' : 'Sign Up Page'}</h1>
             <button onClick={() => setShowSignup(!showSignup)}>{showSignup ? 'Log In' : 'Sign Up'}</button>
             { showSignup ? 
                 <SignUpForm setUser={setUser} /> 

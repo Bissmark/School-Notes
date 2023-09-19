@@ -17,3 +17,4 @@ export async function getCategory(categoryId) {
     const category = await categoriesAPI.getCategory(categoryId);
     return category;
 }
+

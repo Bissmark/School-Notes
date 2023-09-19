@@ -21,3 +21,9 @@ export async function deleteTask(id) {
 export async function updateTask(task) {
     return sendRequest(`${ BASE_URL }/${ task._id }`, 'PUT', task);
 }
+
+// AddTaskToCategory
+export async function addTaskToCategory(categoryId, taskText) {
+    console.log(categoryId, taskText)
+    return sendRequest(BASE_URL, "POST", {categoryId, taskText});
+}

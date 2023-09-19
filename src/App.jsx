@@ -42,6 +42,7 @@ function App() {
   //           console.log(error);
   //       }
   //   };
+  // console.log(categories)
 
   const uploadImage = async (image) => {
 		const data = new FormData()
@@ -66,7 +67,7 @@ function App() {
           <NavBar user={user} setUser={setUser} setSearchQuery={setSearchQuery} />
           <Routes>
             <Route path="/" element={<HomePage searchQuery={searchQuery} setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} />} />
-            <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} times={times} priorities={priorities} categories={categories} uploadImage={uploadImage} />} />
+            <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} setCategories={setCategories} times={times} priorities={priorities} categories={categories} uploadImage={uploadImage} />} />
             <Route path="/tasks/:id" element={<TasksDetail tasks={tasks} setTasks={setTasks} />} />
             <Route path="/tasks/:id/edit" element={<EditForm categories={categories} setCategories={setCategories} tasks={tasks} times={times} priorities={priorities} uploadImage={uploadImage} />} />
             <Route path="/categories/new" element={<CategoryForm tasks={tasks} categories={categories} setCategories={setCategories} />} />

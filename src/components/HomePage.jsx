@@ -33,7 +33,16 @@ export default function HomePage({ tasks, setTasks, setCategories, categories, s
                     {categories.map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
-                            <TasksList searchQuery={searchQuery} tasks={tasks}  />
+                            {category.tasks.map((t) => {
+                                return (
+                                <div key={t._id} className='task'>
+                                    <ul>
+                                        <Link to={`/tasks/${t._id}`}><li>{ t.name }</li></Link>
+                                    </ul>
+                                </div>
+                                )})
+                            }
+                            {/* <TasksList category={category} searchQuery={searchQuery} /> */}
                         </div>
                     ))}
                 </div>
@@ -41,7 +50,8 @@ export default function HomePage({ tasks, setTasks, setCategories, categories, s
                     {categories.map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
-                            <TasksList searchQuery={searchQuery} tasks={tasks} />
+                            
+                            <TasksList category={category} searchQuery={searchQuery} tasks={tasks} />
                         </div>
                     ))}
                 </div>
@@ -49,7 +59,7 @@ export default function HomePage({ tasks, setTasks, setCategories, categories, s
                     {categories.map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
-                            <TasksList searchQuery={searchQuery} tasks={tasks} />
+                            <TasksList  category={category} searchQuery={searchQuery} tasks={tasks} />
                         </div>
                     ))}
                 </div>
@@ -57,7 +67,7 @@ export default function HomePage({ tasks, setTasks, setCategories, categories, s
                     {categories.map((category) => (
                         <div className='category' style={{border: '1px solid purple'}} key={category._id}>
                             <h1 style={{color: 'purple'}}>{category.name}</h1>
-                            <TasksList searchQuery={searchQuery} tasks={tasks} />
+                            <TasksList category={category} searchQuery={searchQuery} tasks={tasks} />
                         </div>
                     ))}
                 </div>
