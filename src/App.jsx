@@ -29,21 +29,6 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // const getCategories = async () => {
-  //       try {
-  //           const response = await categoriesServices.getCategories();
-  //           console.log(response)
-  //           const categoryData = await response.json();
-  //           setCategories([...categories, response]);
-  //           console.log(categories)
-  //           setTasks(response.tasks);
-  //           console.log(tasks)
-  //       } catch (error) {
-  //           console.log(error);
-  //       }
-  //   };
-  // console.log(categories)
-
   const uploadImage = async (image) => {
 		const data = new FormData()
 		data.append("file", image)
@@ -56,10 +41,6 @@ function App() {
       .catch(err => console.log(err))
 	}
 
-  // useEffect(() => {
-  //   getCategories();
-  // }, []);
-
   return (
     <div className="container">
       { user ?
@@ -70,7 +51,7 @@ function App() {
             <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} setCategories={setCategories} times={times} priorities={priorities} categories={categories} uploadImage={uploadImage} />} />
             <Route path="/tasks/:id" element={<TasksDetail tasks={tasks} setTasks={setTasks} />} />
             <Route path="/tasks/:id/edit" element={<EditForm categories={categories} setCategories={setCategories} tasks={tasks} times={times} priorities={priorities} uploadImage={uploadImage} />} />
-            <Route path="/categories/new" element={<CategoryForm tasks={tasks} categories={categories} setCategories={setCategories} />} />
+            <Route path="/categories/new" element={<CategoryForm tasks={tasks} categories={categories} setCategories={setCategories} times={times} priorities={priorities} />} />
             <Route path="*" element={<Navigate to="/tasks" />} />
           </Routes>
         </>

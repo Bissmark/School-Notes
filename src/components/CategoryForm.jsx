@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as categoriesServices from "../utilities/categories-service";
 
-const CategoryForm = ({ tasks, categories, setCategories}) => {
+const CategoryForm = ({ categories, setCategories, times, priorities}) => {
     const [newCategory, setNewCategory] = useState({
         name: '',
+        time: '',
+        priority: '',
     });
     const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ const CategoryForm = ({ tasks, categories, setCategories}) => {
         e.preventDefault();
         addCategory(newCategory);
         console.log(newCategory);
-        setNewCategory({name: ''});
+        setNewCategory({name: '', time: '', priority: ''});
         navigate('/')
     }
 
@@ -33,6 +35,16 @@ const CategoryForm = ({ tasks, categories, setCategories}) => {
             <h1>Add Category</h1>
             <form onSubmit={_handleSubmit}>
                 <input type="text" name="name" value={newCategory.name}  onChange={_handleChange} required />
+                <select name="time" onChange={_handleChange }>
+                    {times.map((time, index) => (
+                        <option key={index} value={time} defaultValue={time}>{time}</option>
+                    ))}
+                </select>
+                <select name="priority" onChange={_handleChange }>
+                    {priorities.map((priority, index) => (
+                        <option key={index} value={priority}>{priority}</option>
+                    ))}
+                </select>
                 <button>Add Category</button>
             </form>
         </div>

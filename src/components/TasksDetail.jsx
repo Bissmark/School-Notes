@@ -17,7 +17,7 @@ const TasksDetail = ({ tasks, setTasks }) => {
         await tasksServices.deleteTask(id);
         const updatedtasks = tasks.filter((n) => n._id !== id);
         setTasks(updatedtasks);
-        navigate('/tasks');
+        navigate('/');
     }
 
     return (

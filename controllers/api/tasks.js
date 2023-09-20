@@ -3,7 +3,6 @@ const Category = require('../../models/category');
 
 module.exports = {
     index,
-    // create,
     show,
     delete: deleteTask,
     update,
@@ -13,7 +12,6 @@ module.exports = {
 async function index(req, res) {
     try {
         await Task.find({user: req.user._id}).populate('category').exec().then(tasks => {
-            // console.log(tasks);
             res.json(tasks);
         });
         } catch (err) {
@@ -75,12 +73,8 @@ async function update(req, res) {
 }
 
 async function addTaskToCategory(req, res) {
-    console.log('test')
     try {
-        console.log('lmao')
         const category = await Category.findById(req.body.categoryId);
-        console.log(req.body.taskText);
-
         const task = await Task.create({
             name: req.body.taskText.name,
             category: req.body.categoryId,
@@ -89,9 +83,6 @@ async function addTaskToCategory(req, res) {
             priority: req.body.taskText.priority,
             image: req.body.taskText.image
         });
-        
-        console.log(task);
-
         category.tasks.push(task);
         category.save();
         res.json(task);
