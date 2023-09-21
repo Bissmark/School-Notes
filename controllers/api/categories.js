@@ -4,7 +4,8 @@ const Task = require('../../models/task');
 module.exports = {
     index,
     show,
-    create
+    delete: deleteCategory,
+    create,
 };
 
 async function index(req, res) {
@@ -40,6 +41,15 @@ async function create(req, res) {
         res.json(category);
     } catch (err) {
         console.log(err);
+        res.status(400).json(err);
+    }
+}
+
+async function deleteCategory(req, res) {
+    try {
+        await Category.deleteOne(req.body);
+        res.json(true);
+    } catch (err) {
         res.status(400).json(err);
     }
 }

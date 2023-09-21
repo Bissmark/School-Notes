@@ -22,7 +22,7 @@ const CategoryDetail = () => {
     }, [id]);
 
 
-    const { name, description } = category;
+    const { name } = category;
     return (
         <div>
             <h2>Category: {name}</h2>

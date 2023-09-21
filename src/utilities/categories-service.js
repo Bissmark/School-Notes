@@ -18,3 +18,10 @@ export async function getCategory(categoryId) {
     return category;
 }
 
+// Delete
+export async function deleteCategory(category) {
+    console.log(category)
+    await categoriesAPI.deleteCategory(category);
+    return true;
+}
+
