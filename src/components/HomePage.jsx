@@ -24,13 +24,14 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
             }
         };
         fetchCategories()
-    }, [setCategories]);
+    }, []);
 
     async function deleteCategory(category) {
         try {
             await categoriesServices.deleteCategory(category);
-            const updatedCategories = categories.filter((n) => n._id !== category._id);
-            setCategories(updatedCategories);
+            setCategories((prevCategories) => prevCategories.filter((n) => 
+                n._id !== category._id
+            ));
         } catch (error) {
             console.log(error);
         }

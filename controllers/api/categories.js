@@ -49,7 +49,8 @@ async function create(req, res) {
 
 async function deleteCategory(req, res) {
     try {
-        await Category.deleteOne(req.body);
+        const categoryId = req.body._id;
+        await Category.deleteOne({_id: categoryId});
         res.json(true);
     } catch (err) {
         res.status(400).json(err);
