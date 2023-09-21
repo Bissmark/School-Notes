@@ -5,8 +5,8 @@ import * as categoriesServices from "../utilities/categories-service";
 const CategoryForm = ({ categories, setCategories, times, priorities}) => {
     const [newCategory, setNewCategory] = useState({
         name: '',
-        time: '',
-        priority: '',
+        time: 1,
+        priority: 'Low',
     });
     const navigate = useNavigate();
 
@@ -25,8 +25,7 @@ const CategoryForm = ({ categories, setCategories, times, priorities}) => {
     function _handleSubmit(e) {
         e.preventDefault();
         addCategory(newCategory);
-        console.log(newCategory);
-        setNewCategory({name: '', time: '', priority: ''});
+        setNewCategory({name: '', time: 1, priority: 'Low'});
         navigate('/')
     }
 
@@ -35,12 +34,12 @@ const CategoryForm = ({ categories, setCategories, times, priorities}) => {
             <h1>Add Category</h1>
             <form onSubmit={_handleSubmit}>
                 <input type="text" name="name" value={newCategory.name}  onChange={_handleChange} required />
-                <select name="time" onChange={_handleChange }>
+                <select name="time" onChange={_handleChange } value={newCategory.time}>
                     {times.map((time, index) => (
-                        <option key={index} value={time} defaultValue={time}>{time}</option>
+                        <option key={index} value={time}>{time}</option>
                     ))}
                 </select>
-                <select name="priority" onChange={_handleChange }>
+                <select name="priority" onChange={_handleChange } value={newCategory.priority}>
                     {priorities.map((priority, index) => (
                         <option key={index} value={priority}>{priority}</option>
                     ))}

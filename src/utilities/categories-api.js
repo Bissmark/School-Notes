@@ -18,6 +18,5 @@ export async function getCategory(categoryId) {
 
 // Delete
 export async function deleteCategory(category) {
-    console.log(category)
     return sendRequest(BASE_URL, 'DELETE', category);
 }

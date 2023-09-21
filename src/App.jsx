@@ -8,19 +8,16 @@ import TasksDetail from './components/TasksDetail';
 import TaskForm from './components/TasksForm';
 import EditForm from './components/EditForm';
 import CategoryForm from './components/CategoryForm';
-import * as categoriesServices from './utilities/categories-service';
 import './App.css';
 
 const times = [
     '1',
-    '2',
-    '3',
+    '2'
 ]
 
 const priorities = [
-    'High',
-    'Medium',
-    'Low'
+    'Low',
+    'High'
 ]
 
 function App() {
@@ -45,9 +42,9 @@ function App() {
     <div className="container">
       { user ?
         <>
-          <NavBar user={user} setUser={setUser} setSearchQuery={setSearchQuery} />
+          <NavBar user={user} setUser={setUser} categories={categories} setSearchQuery={setSearchQuery} />
           <Routes>
-            <Route path="/" element={<HomePage searchQuery={searchQuery} setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} />} />
+            <Route path="/" element={<HomePage searchQuery={searchQuery} setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} times={times} priorities={priorities} />} />
             <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} setCategories={setCategories} times={times} priorities={priorities} categories={categories} uploadImage={uploadImage} />} />
             <Route path="/tasks/:id" element={<TasksDetail tasks={tasks} setTasks={setTasks} />} />
             <Route path="/tasks/:id/edit" element={<EditForm categories={categories} setCategories={setCategories} tasks={tasks} times={times} priorities={priorities} uploadImage={uploadImage} />} />

@@ -11,22 +11,24 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
         image: ''
     });
     const [selectedCategoryId, setSelectedCategoryId] = useState(categories[0]._id);
-    console.log(categories)
 
     const navigate = useNavigate();
     const [image, setImage] = useState('');
 
     async function addTaskToCategory(categoryId, task) {
         try {
-            const newTask = tasksServices.addTaskToCategory(categoryId, task);
-            setTasks([...tasks, newTask]);
-            const newCategoriesArray = categories.map((category) => {
-                if (category.id === categoryId) {
-                    category.tasks.push(newTask);
-                }
-                return category;
+            const addedTask = await tasksServices.addTaskToCategory(categoryId, task);
+            // Use functional updates to ensure synchronous state updates
+            setTasks((prevTasks) => [...prevTasks, addedTask]);
+            setCategories((prevCategories) => {
+                return prevCategories.map((category) => {
+                    if (category._id === categoryId) {
+                        category.tasks.push(addedTask);
+                    }
+                    return category;
+                });
             });
-            setCategories(newCategoriesArray);
+            return addedTask; // Return the added task
         } catch (error) {
             console.log(error);
         }
@@ -58,11 +60,12 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
         }
         try {
             addTaskToCategory(selectedCategoryId, newTask);
+            setNewTask({name: '', time: '', priority: '', date: '', image: ''});
+            setImage('');
+            navigate('/');
         } catch (error) {
             console.log(error);
         }
-        setImage('');
-        navigate('/')
     }
 
     return (

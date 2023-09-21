@@ -14,7 +14,15 @@ const categorySchema = new Schema(
         tasks: [{
             type: Schema.Types.ObjectId,
             ref: 'Task'
-        }]
+        }],
+        time: {
+            type: Number,
+            default: 1
+        },
+        priority: {
+            type: String,
+            default: 'low'
+        },
     }, 
     { timestamps: true }
 );

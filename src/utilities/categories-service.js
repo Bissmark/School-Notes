@@ -20,7 +20,6 @@ export async function getCategory(categoryId) {
 
 // Delete
 export async function deleteCategory(category) {
-    console.log(category)
     await categoriesAPI.deleteCategory(category);
     return true;
 }

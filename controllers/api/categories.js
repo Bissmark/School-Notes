@@ -36,7 +36,9 @@ async function create(req, res) {
     try {
         const category = await Category.create({
             name: req.body.name,
-            user: req.user._id
+            user: req.user._id,
+            time: req.body.time,
+            priority: req.body.priority,
         });
         res.json(category);
     } catch (err) {
