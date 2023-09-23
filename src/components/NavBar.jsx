@@ -11,37 +11,41 @@ export default function NavBar({ user, setUser, categories, setSearchQuery }) {
   }
 
   return (
-    <nav>
-      <SearchBar setSearchQuery={setSearchQuery} />
-      <Link className='link' to="/">
-        <AiFillAliwangwang />
-        <span className='tooltiptext'>Home</span>
-      </Link>
-      { categories.length > 0 && <Link className='link' to="/tasks/new">
-        <AiFillAliwangwang />
-        <span className='tooltiptext'>New Task</span>
-      </Link>}
-      <Link className='link' to="/categories/new">
-        <AiFillAliwangwang />
-        <span className='tooltiptext'>New Category</span>
-      </Link>
-      { user ? 
-        <Link className='link' onClick={handleLogOut}>
+    <nav className='navbar'>
+      <div className='menu-1'>
+        <SearchBar setSearchQuery={setSearchQuery} />
+      </div>
+      <ul className='nav-links'>
+        <Link className='link' to="/">
           <AiFillAliwangwang />
-          <span className='tooltiptext'>Logout</span>
+          <span className='tooltiptext'>Home</span>
         </Link>
-      :
-        <>
-          <Link className='link' to="/login">
+        { categories.length > 0 && <Link className='link' to="/tasks/new">
+          <AiFillAliwangwang />
+          <span className='tooltiptext'>New Task</span>
+        </Link>}
+        <Link className='link' to="/categories/new">
+          <AiFillAliwangwang />
+          <span className='tooltiptext'>New Category</span>
+        </Link>
+        { user ? 
+          <Link className='link' onClick={handleLogOut}>
             <AiFillAliwangwang />
-            <span className='tooltiptext'>Login</span>
+            <span className='tooltiptext'>Logout</span>
           </Link>
-          <Link className='link' to="/signup">
-            <AiFillAliwangwang />
-            <span className='tooltiptext'>Signup</span>
-          </Link>
-        </>
-      }
+        :
+          <>
+            <Link className='link' to="/login">
+              <AiFillAliwangwang />
+              <span className='tooltiptext'>Login</span>
+            </Link>
+            <Link className='link' to="/signup">
+              <AiFillAliwangwang />
+              <span className='tooltiptext'>Signup</span>
+            </Link>
+          </>
+        }
+      </ul>
       
       
     </nav>

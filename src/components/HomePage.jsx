@@ -49,27 +49,33 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
         <>
             <h1>Home Page</h1> 
             <div> { categories.length > 0 && 
-                <Link to='/tasks/new'>Add Task</Link>
+                <button className='category-button'>
+                    <Link to='/tasks/new'>Add Task</Link>
+                </button>
             }
-            </div>
-            <div className='category-button'>
-                <Link to='/categories/new'>Add Category</Link>
+                <button className='category-button'>
+                    <Link to='/categories/new'>Add Category</Link>
+                </button>
             </div>
             <div className='grid-container horizontal'>
                 <div className='grid-item' style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)', borderBottom: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant1.map((category) => (
-                        <div className='category' style={{border: '1px solid purple'}} key={category._id}>
-                            <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                            <h1 style={{color: 'purple'}}>{category.name}</h1>
+                        <div className='category' key={category._id}>
+                            <div className='title'>
+                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                <h1>{category.name}</h1>
+                            </div>
                             <TasksList category={category} searchQuery={searchQuery} />
                         </div>
                     ))}
                 </div>
                 <div className='grid-item' style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant3.map((category) => (
-                        <div className='category' style={{border: '1px solid purple'}} key={category._id}>
-                            <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                            <h1 style={{color: 'purple'}}>{category.name}</h1>
+                        <div className='category' key={category._id}>
+                            <div className='title'>
+                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                <h1>{category.name}</h1>
+                            </div>
                             <TasksList category={category} searchQuery={searchQuery} />
                         </div>
                     ))}
@@ -78,18 +84,22 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
             <div className='grid-container vertical'>
                 <div className='grid-item' style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant2.map((category) => (
-                        <div className='category' style={{border: '1px solid purple'}} key={category._id}>
-                            <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                            <h1 style={{color: 'purple'}}>{category.name}</h1>
+                        <div className='category' key={category._id}>
+                            <div className='title'>
+                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                <h1>{category.name}</h1>
+                            </div>
                             <TasksList  category={category} searchQuery={searchQuery} />
                         </div>
                     ))}
                 </div>
                 <div className='grid-item'>
                     {quadrant4.map((category) => (
-                        <div className='category' style={{border: '1px solid purple'}} key={category._id}>
-                            <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                            <h1 style={{color: 'purple'}}>{category.name}</h1>
+                        <div className='category' key={category._id}>
+                            <div className='title'>
+                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                <h1>{category.name}</h1>
+                            </div>
                             <TasksList category={category} searchQuery={searchQuery} />
                         </div>
                     ))}

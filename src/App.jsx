@@ -39,10 +39,11 @@ function App() {
 	}
 
   return (
-    <div className="container">
+    <div>
       { user ?
         <>
           <NavBar user={user} setUser={setUser} categories={categories} setSearchQuery={setSearchQuery} />
+          <div className="container">
           <Routes>
             <Route path="/" element={<HomePage searchQuery={searchQuery} setTasks={setTasks} tasks={tasks} categories={categories} setCategories={setCategories} times={times} priorities={priorities} />} />
             <Route path="/tasks/new" element={<TaskForm tasks={tasks} setTasks={setTasks} setCategories={setCategories} times={times} priorities={priorities} categories={categories} uploadImage={uploadImage} />} />
@@ -51,10 +52,13 @@ function App() {
             <Route path="/categories/new" element={<CategoryForm tasks={tasks} categories={categories} setCategories={setCategories} times={times} priorities={priorities} />} />
             <Route path="*" element={<Navigate to="/tasks" />} />
           </Routes>
+          </div>
         </>
         :
         <AuthPage setUser={setUser} />
+        
       }
+    
     </div>
   );
 }

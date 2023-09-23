@@ -1,6 +1,7 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
 import { useState, useEffect } from "react";
 import * as tasksServices from '../utilities/tasks-service';
+import './TasksDetail.css';
 
 const TasksDetail = ({ tasks, setTasks }) => {
     const [singleTask, setSingleTask] = useState({});
@@ -21,18 +22,21 @@ const TasksDetail = ({ tasks, setTasks }) => {
     }
 
     return (
-        <div key={singleTask._id} className='task'>
-            <button className='delete-button' onClick={ () => deleteTask(singleTask._id) }>&times;</button>
-            
+        <div key={singleTask._id} className="task-background">
             <ul>
-                <li>{ singleTask.name }</li>
-                <li>{ singleTask.category }</li>
+                <li>Task Name: <p>{ singleTask.name }</p></li>
+                <li>Task Category: { singleTask.category }</li>
                 <li>{ singleTask.time }</li>
                 <li>{ singleTask.priority }</li>
-                <li>{ new Date(singleTask.createdAt).toLocaleString() }:</li>
+                <li>Date Created: <p>{ new Date(singleTask.createdAt).toLocaleString() }</p></li>
                 <img src={singleTask.image} alt="" />
             </ul>
-            <Link to={`/tasks/${singleTask._id}/edit`}>Edit</Link>
+            <button className='delete-button' onClick={ () => deleteTask(singleTask._id) }>
+                Delete
+            </button>
+            <button className="edit-button">
+                <Link to={`/tasks/${singleTask._id}/edit`}>Edit</Link>
+            </button>
         </div>
     )
 }

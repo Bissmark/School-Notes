@@ -1,3 +1,30 @@
+h1 {
+    margin-bottom: 10px;
+}
+
+.category-button {
+    background-color: #00B5B5; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.category-button:hover {
+    background-color: #1DCFA2; /* Green */
+    color: white;
+}
+
+.category-button a {
+    color: white;
+    text-decoration: none;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -11,7 +38,7 @@
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-right: 10px solid black;
+    border-right: 20px solid black;
     position: absolute;
     left: -1%;
     bottom: -5%;
@@ -24,7 +51,7 @@
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left: 10px solid black;
+    border-left: 20px solid black;
     position: absolute;
     right: -1%;
     bottom: -5%;
@@ -36,7 +63,7 @@
     content: '';
     width: 0;
     height: 0;
-    border-top: 10px solid black;
+    border-top: 20px solid black;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     position: absolute;
@@ -49,7 +76,7 @@
     content: '';
     width: 0;
     height: 0;
-    border-bottom: 10px solid black;
+    border-bottom: 20px solid black;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     position: absolute;
@@ -61,20 +88,20 @@
 .grid-item {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    align-items: center;
+    /* align-items: center; */
     height: 400px;
     overflow-y: auto;
 }
 
 .category {
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    width: 60%;
-    margin: 0 auto;
+    border: 3px solid #FE6971;
+    width: 100px;
+    /* margin: 0 auto; */
     overflow-y: scroll;
     overflow-x: hidden;
     height: 150px;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    /* margin-bottom: 30px; */
 }
 
 .category-button {
@@ -82,5 +109,27 @@
 }
 
 .category h1 {
-    font-size: 10px;
+    font-size: 11px;
+    color: #EC6693;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+.delete-button {
+    background-color: #FFBB56; /* Green */
+    border: none;
+    color: white;
+    padding: 3px 5px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #FC8255; /* Green */
+    color: white;
+}
+
+.title {
+    display: flex;
+    gap: 1px;
 }

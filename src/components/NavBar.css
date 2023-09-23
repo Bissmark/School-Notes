@@ -1,25 +1,53 @@
+/* Google Fonts */
+@import url(https://fonts.googleapis.com/css?family=Anonymous+Pro);
+
+.navbar {
+    display: flex; /* Displays the navbar links below each other instead of side by side */
+    padding: 20px; /* Add some padding inside the navbar */
+    background-color: #9C5CAD;
+    margin-bottom: 30px;
+}
+
+.menu-1 {
+    display: flex;
+    font-size: 18px;
+}
+
+.menu-1 input {
+    width: 25em;
+    padding: 5px 10px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    list-style: none;
+    font-size: 18px;
+}
+
 .link {
     color: #fff;
     font-size: 1.5rem;
     margin: 0 1rem;
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
-    background-color: #000;
+    background-color: #FE6971;
     position: relative;
     &:hover {
-      background-color: #fff;
-      color: #000;
+      background-color: #FC8255;
+      color: #9C5CAD;
     }
 }
 
 .tooltiptext {
     visibility: hidden;
     width: max-content;
-    background-color: #000;
+    background-color: #FE6971;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
+    padding: 7px 15px;
     font-size: 1rem;
 
     position: absolute;
