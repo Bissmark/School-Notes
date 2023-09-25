@@ -18,11 +18,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
         const fetchCategories = async () => {
             try {
                 const categoriesRender = await categoriesServices.getCategories();
-                const categoriesWithPostion = categoriesRender.map((category) => ({
-                    ...category,
-                    position: { x: 0, y: 0 }
-                }));
-                setCategories(categoriesWithPostion);
+                setCategories(categoriesRender);
                 console.log(categories)
                 setLoading(false);
             } catch (error) {
@@ -31,7 +27,6 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
             }
         };
         fetchCategories()
-        console.log(categories)
     }, []);
 
     async function deleteCategory(category) {
@@ -60,6 +55,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
     }
 
     const eventLogger = (e, data) => {
+        console.log(data);
         localStorage.setItem('defaultPosition', { valueX: data.x, valueY: data.y });
     };
 
@@ -90,7 +86,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                             <Draggable 
                                 bounds='.grid-bounds'
                                 defaultPosition={{x: 0, y: 0}}
-                                onStop={saveCategoryPositions}
+                                onStop={eventLogger}
                             >
                                 <div className='category' key={category._id}>
                                     <div className='title'>
