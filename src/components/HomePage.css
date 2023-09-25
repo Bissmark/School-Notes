@@ -25,11 +25,15 @@ h1 {
     text-decoration: none;
 }
 
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
+    min-height: 100%;
 }
+
+
 
 /* Hortizontal Arrows */
 .grid-container.horizontal::before {
@@ -39,7 +43,7 @@ h1 {
     border-right: 20px solid black;
     position: absolute;
     left: -1%;
-    bottom: -5%;
+    bottom: 47.5%;
     transform: translateY(-50%);
 }
 
@@ -50,7 +54,7 @@ h1 {
     border-left: 20px solid black;
     position: absolute;
     right: -1%;
-    bottom: -5%;
+    bottom: 47.5%;
     transform: translateY(-50%);
 }
 
@@ -62,7 +66,7 @@ h1 {
     border-right: 10px solid transparent;
     position: absolute;
     left: 49.9%;
-    bottom: -2.5%;
+    bottom: 47.5;
     transform: translateX(-50%);
 }
 
@@ -75,13 +79,6 @@ h1 {
     right: 48%;
     top: -103%;
     transform: translateX(-50%);
-}
-
-.grid-item {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 25em;
-    overflow-y: auto;
 }
 
 .category {
@@ -127,4 +124,9 @@ h1 {
 .title {
     display: flex;
     gap: 1px;
+}
+
+.grid-bounds {
+    width: 1000px;
+    /* height: 800px; */
 }

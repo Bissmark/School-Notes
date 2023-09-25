@@ -23,6 +23,13 @@ const categorySchema = new Schema(
             type: String,
             default: 'low'
         },
+        position: {
+            type: {
+                x: Number,
+                y: Number
+            },
+            default: { x: 0, y: 0 }
+        }
     }, 
     { timestamps: true }
 );

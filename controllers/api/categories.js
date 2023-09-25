@@ -6,6 +6,7 @@ module.exports = {
     show,
     delete: deleteCategory,
     create,
+    updatePositions
 };
 
 async function index(req, res) {
@@ -54,6 +55,21 @@ async function deleteCategory(req, res) {
         await Category.deleteOne({_id: categoryId});
         res.json(true);
     } catch (err) {
+        console.log(err);
+        res.status(400).json(err);
+    }
+}
+
+async function updatePositions(req, res) {
+    console.log('lmao')
+    try {
+        const categories = req.body;
+        categories.forEach(async (category) => {
+            await Category.updateOne({_id: category._id}, {position: category.position});
+        });
+        res.json(true);
+    } catch (err) {
+        console.log(err);
         res.status(400).json(err);
     }
 }

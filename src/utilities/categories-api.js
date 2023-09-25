@@ -20,3 +20,8 @@ export async function getCategory(categoryId) {
 export async function deleteCategory(category) {
     return sendRequest(BASE_URL, 'DELETE', category);
 }
+
+// Save Positions
+export async function saveCategoryPositions(categories) {
+    return sendRequest(BASE_URL, 'POST', categories);
+}

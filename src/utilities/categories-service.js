@@ -24,3 +24,9 @@ export async function deleteCategory(category) {
     return true;
 }
 
+// Save Positions
+export async function saveCategoryPositions(categories) {
+    console.log(categories)
+    await categoriesAPI.saveCategoryPositions(categories);
+    return true;
+}
