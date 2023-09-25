@@ -71,7 +71,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                 <div className='grid-container horizontal'>
                 <div style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant1.map((category) => (
-                            <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                            <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 576}}>
                         <div className='grid-item'>
                                 <div className='category' key={category._id}>
                                     <div className='title'>
@@ -86,7 +86,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                     </div>
                     <div style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)', marginBottom: '-1px'}}>
                         {quadrant3.map((category) => (
-                            <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                            <Draggable bounds={{top: 0, left: -480, right: 280, bottom: 575}}>
                                 <div className='grid-item'>
                                     <div className='category'  key={category._id} >
                                         <div className='title'>
@@ -103,7 +103,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
             <div className='grid-container vertical'>
                 <div style={{borderTop: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant2.map((category) => (
-                    <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                    <Draggable bounds={{top: -400, left: 0, right: 760, bottom: 175}}>
                             <div className='grid-item'>
                                 <div className='category' key={category._id}>
                                     <div className='title'>
@@ -118,7 +118,7 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                 </div>
                 <div style={{borderLeft: '1px solid rgba(0, 0, 0, 0.8)', marginLeft: '-1px'}}>
                 {quadrant4.map((category) => (
-                        <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                        <Draggable bounds={{top: -400, left: -480, right: 280, bottom: 176}}>
                             <div className='grid-item'>
                                     <div className='category' key={category._id}>
                                         <div className='title'>
