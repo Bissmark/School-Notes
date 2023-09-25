@@ -16,8 +16,8 @@ const categorySchema = new Schema(
             ref: 'Task'
         }],
         time: {
-            type: Number,
-            default: 1
+            type: String,
+            default: 'Slow'
         },
         priority: {
             type: String,

@@ -11,6 +11,9 @@ const taskSchema = new Schema({
             ref: 'User',
             required: true
         },
+        description: {
+            type: String,
+        },
         time: {
             type: String,
         },

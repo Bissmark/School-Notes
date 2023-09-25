@@ -78,6 +78,7 @@ async function addTaskToCategory(req, res) {
         const task = await Task.create({
             name: req.body.taskText.name,
             category: req.body.categoryId,
+            description: req.body.taskText.description,
             user: req.user._id,
             time: req.body.taskText.time,
             priority: req.body.taskText.priority,

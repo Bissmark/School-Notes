@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import * as tasksServices from '../utilities/tasks-service';
+import './TasksForm.css';
 
-export default function TaskForm ({tasks, setTasks, times, priorities, categories, uploadImage, setCategories }) {
+export default function TaskForm ({tasks, setTasks, categories, uploadImage, setCategories }) {
     const [newTask, setNewTask] = useState({
         name: '',
+        description: '',
         time: '',
         priority: '',
         date: '',
@@ -60,7 +62,7 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
         }
         try {
             addTaskToCategory(selectedCategoryId, newTask);
-            setNewTask({name: '', time: '', priority: '', date: '', image: ''});
+            setNewTask({name: '', description: '', time: '', priority: '', date: '', image: ''});
             setImage('');
             navigate('/');
         } catch (error) {
@@ -69,16 +71,25 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
     }
 
     return (
-        <div>
+        <div className="task-form">
             <h1>Add Task</h1>
             <form onSubmit={ _handleSubmit }>
-                <input type="text" name="name" value={newTask.name}  onChange={_handleChange} required />
-                <select name="category" onChange={_handleCategoryChange }>
+                <label>
+                    Name: <input type="text" name="name" value={newTask.name}  onChange={_handleChange} required />
+                </label>
+                <label>
+                    Description: <input type="text" name="description" value={newTask.description}  onChange={_handleChange} required />
+                </label>
+                <label>
+                    Category: 
+                    <select name="category" onChange={_handleCategoryChange }>
                     {categories.map((category, index) => (
                         <option key={index} value={category._id}>{category.name}</option>
                     ))}
                 </select>
-                <select name="time" onChange={_handleChange }>
+                </label>
+                
+                {/* <select name="time" onChange={_handleChange }>
                     {times.map((time, index) => (
                         <option key={index} value={time} defaultValue={time}>{time}</option>
                     ))}
@@ -87,8 +98,10 @@ export default function TaskForm ({tasks, setTasks, times, priorities, categorie
                     {priorities.map((priority, index) => (
                         <option key={index} value={priority}>{priority}</option>
                     ))}
-                </select>
-                <input type="file" onChange={_handleImageChange} />
+                </select> */}
+                <label>
+                    Image: <input type="file" onChange={_handleImageChange} />
+                </label>
                 <button>Add Task</button>
             </form>
         </div>

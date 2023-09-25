@@ -10,6 +10,7 @@
 
 .menu-1 {
     display: flex;
+    align-items: center;
     font-size: 18px;
 }
 
@@ -23,12 +24,13 @@
     justify-content: end;
     width: 100%;
     list-style: none;
-    font-size: 18px;
 }
 
 .link {
+    display: flex;
+    align-items: center;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 0 1rem;
     padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;

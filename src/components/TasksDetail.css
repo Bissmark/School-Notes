@@ -31,7 +31,7 @@
     text-decoration: none;
 }
 
-.delete-button {
+.button-delete {
     background-color: #FE6971; /* Green */
     border: none;
     color: white;
@@ -44,12 +44,12 @@
     margin-left: 30px;
 }
 
-.delete-button:hover {
+.button-delete:hover {
     background-color: #FC8255; /* Green */
     color: white;
 }
 
-.delete-button a {
+.button-delete a {
     color: white;
     text-decoration: none;
 }
@@ -61,4 +61,8 @@ li {
 li p {
     display: inline;
     color: #9C5CAD;
+}
+
+ul {
+    list-style-type: none;
 }

@@ -11,8 +11,8 @@ import CategoryForm from './components/CategoryForm';
 import './App.css';
 
 const times = [
-    '1',
-    '2'
+    'Slow',
+    'Fast'
 ]
 
 const priorities = [

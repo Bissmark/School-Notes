@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react';
 import { Link} from 'react-router-dom';
 import TasksList from './TasksList';
 import * as categoriesServices from '../utilities/categories-service';
+import Draggable from 'react-draggable';
 import './HomePage.css';
+
 
 export default function HomePage({ setCategories, categories, searchQuery }) {
     const [loading, setLoading] = useState(true);
+    const [currentPosition, setCurrentPosition] = useState({
+    xRate: 550,
+    yRate: 550
+  });
 
-    const quadrant1 = categories.filter((category) => category.time === 1 && category.priority === 'Low');
-    const quadrant2 = categories.filter((category) => category.time === 2 && category.priority === 'Low');
-    const quadrant3 = categories.filter((category) => category.time === 1 && category.priority === 'High');
-    const quadrant4 = categories.filter((category) => category.time === 2 && category.priority === 'High');
+    const quadrant1 = categories.filter((category) => category.time === 'Slow' && category.priority === 'Low');
+    const quadrant2 = categories.filter((category) => category.time === 'Fast' && category.priority === 'Low');
+    const quadrant3 = categories.filter((category) => category.time === 'Slow' && category.priority === 'High');
+    const quadrant4 = categories.filter((category) => category.time === 'Fast' && category.priority === 'High');
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -37,6 +43,10 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
         }
     }
 
+    const onDrag = (e, data) => {
+    setCurrentPosition({ xRate: data.lastX, yRate: data.lastY });
+  };
+
     if (loading) {
         return (
             <div>
@@ -49,61 +59,79 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
         <>
             <h1>Home Page</h1> 
             <div> { categories.length > 0 && 
-                <button className='category-button'>
-                    <Link to='/tasks/new'>Add Task</Link>
-                </button>
+                <Link to='/tasks/new'>
+                    <button className='category-button'>Add Task</button>
+                </Link>
             }
-                <button className='category-button'>
-                    <Link to='/categories/new'>Add Category</Link>
-                </button>
+                <Link to='/categories/new'>
+                    <button className='category-button'>Add Category</button>
+                </Link>
             </div>
-            <div className='grid-container horizontal'>
-                <div className='grid-item' style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)', borderBottom: '1px solid rgba(0, 0, 0, 0.8)'}}>
+            <div className='grid-bounds'>
+                <div className='grid-container horizontal'>
+                <div style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant1.map((category) => (
-                        <div className='category' key={category._id}>
-                            <div className='title'>
-                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                                <h1>{category.name}</h1>
+                            <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                        <div className='grid-item'>
+                                <div className='category' key={category._id}>
+                                    <div className='title'>
+                                        <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                        <h1>{category.name}</h1>
+                                    </div>
+                                    <TasksList category={category} searchQuery={searchQuery} />
+                                </div>    
                             </div>
-                            <TasksList category={category} searchQuery={searchQuery} />
-                        </div>
+                    </Draggable>
                     ))}
-                </div>
-                <div className='grid-item' style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)'}}>
-                    {quadrant3.map((category) => (
-                        <div className='category' key={category._id}>
-                            <div className='title'>
-                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                                <h1>{category.name}</h1>
-                            </div>
-                            <TasksList category={category} searchQuery={searchQuery} />
-                        </div>
-                    ))}
-                </div>
+                    </div>
+                    <div style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)', marginBottom: '-1px'}}>
+                        {quadrant3.map((category) => (
+                            <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                                <div className='grid-item'>
+                                    <div className='category'  key={category._id} >
+                                        <div className='title'>
+                                            <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                            <h1>{category.name}</h1>
+                                        </div>
+                                        <TasksList category={category} searchQuery={searchQuery} />
+                                    </div>
+                                </div>
+                            </Draggable>
+                        ))}
+                    </div>
             </div>
             <div className='grid-container vertical'>
-                <div className='grid-item' style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
+                <div style={{borderTop: '1px solid rgba(0, 0, 0, 0.8)'}}>
                     {quadrant2.map((category) => (
-                        <div className='category' key={category._id}>
-                            <div className='title'>
-                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                                <h1>{category.name}</h1>
+                    <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                            <div className='grid-item'>
+                                <div className='category' key={category._id}>
+                                    <div className='title'>
+                                        <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                        <h1>{category.name}</h1>
+                                    </div>
+                                    <TasksList  category={category} searchQuery={searchQuery} />
+                                </div>
                             </div>
-                            <TasksList  category={category} searchQuery={searchQuery} />
-                        </div>
+                    </Draggable>
                     ))}
                 </div>
-                <div className='grid-item'>
-                    {quadrant4.map((category) => (
-                        <div className='category' key={category._id}>
-                            <div className='title'>
-                                <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
-                                <h1>{category.name}</h1>
-                            </div>
-                            <TasksList category={category} searchQuery={searchQuery} />
-                        </div>
-                    ))}
+                <div style={{borderLeft: '1px solid rgba(0, 0, 0, 0.8)', marginLeft: '-1px'}}>
+                {quadrant4.map((category) => (
+                        <Draggable bounds={{top: 0, left: 0, right: 760, bottom: 575}}>
+                            <div className='grid-item'>
+                                    <div className='category' key={category._id}>
+                                        <div className='title'>
+                                            <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
+                                            <h1>{category.name}</h1>
+                                        </div>
+                                        <TasksList category={category} searchQuery={searchQuery} />
+                                    </div>
+                            </div>    
+                        </Draggable>
+                ))}
                 </div>
+            </div>
             </div>
         </>
     );

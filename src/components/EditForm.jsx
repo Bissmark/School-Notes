@@ -41,13 +41,22 @@ const EditForm = ({ tasks, priorities, times, categories, uploadImage }) => {
         <div>
             <h1>Edit Form</h1>
             <form onSubmit={ _handleSubmit }>
-                <input type="text" name="name" value={editedTask.name}  onChange={_handleChange} required />
-                <select name="category" value={editedTask.category} onChange={_handleChange }>
-                    {categories.map((category, index) => (
-                        <option key={index} value={category.name}>{category.name}</option>
-                    ))}
-                </select>
-                <select name="time" value={editedTask.time} onChange={_handleChange }>
+                <label>
+                    Task Name: <input type="text" name="name" value={editedTask.name}  onChange={_handleChange} required />
+                </label>
+                <label>
+                    Task Description: <input type="text" name="description" value={editedTask.description}  onChange={_handleChange} required />
+                </label>
+                <label>
+                    Task Category:
+                    <select name="category" value={editedTask.category} onChange={_handleChange }>
+                        {categories.map((category, index) => (
+                            <option key={index} value={category.name}>{category.name}</option>
+                        ))}
+                    </select>    
+                </label>
+                
+                {/* <select name="time" value={editedTask.time} onChange={_handleChange }>
                     {times.map((time, index) => (
                         <option key={index} value={time}>{time}</option>
                     ))}
@@ -56,8 +65,11 @@ const EditForm = ({ tasks, priorities, times, categories, uploadImage }) => {
                     {priorities.map((priority, index) => (
                         <option key={index} value={priority}>{priority}</option>
                     ))}
-                </select>
-                <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+                </select> */}
+                <label>
+                    <input type="file" onChange={(e) => setImage(e.target.files[0])} />    
+                </label>
+                
                 <button>Update</button>
             </form>
         </div>

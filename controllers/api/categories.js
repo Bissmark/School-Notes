@@ -33,6 +33,7 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
+    console.log(req.body);
     try {
         const category = await Category.create({
             name: req.body.name,

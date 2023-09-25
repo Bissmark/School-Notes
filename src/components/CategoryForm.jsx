@@ -5,7 +5,7 @@ import * as categoriesServices from "../utilities/categories-service";
 const CategoryForm = ({ categories, setCategories, times, priorities}) => {
     const [newCategory, setNewCategory] = useState({
         name: '',
-        time: 1,
+        time: 'Slow',
         priority: 'Low',
     });
     const navigate = useNavigate();
@@ -25,7 +25,7 @@ const CategoryForm = ({ categories, setCategories, times, priorities}) => {
     function _handleSubmit(e) {
         e.preventDefault();
         addCategory(newCategory);
-        setNewCategory({name: '', time: 1, priority: 'Low'});
+        setNewCategory({name: '', time: 'Slow', priority: 'Low'});
         navigate('/')
     }
 
@@ -33,17 +33,25 @@ const CategoryForm = ({ categories, setCategories, times, priorities}) => {
         <div>
             <h1>Add Category</h1>
             <form onSubmit={_handleSubmit}>
-                <input type="text" name="name" value={newCategory.name}  onChange={_handleChange} required />
-                <select name="time" onChange={_handleChange } value={newCategory.time}>
+                <label>
+                    Name: <input type="text" name="name" value={newCategory.name}  onChange={_handleChange} required />
+                </label>
+                <label>
+                    Time: 
+                    <select name="time" onChange={_handleChange } value={newCategory.time}>
                     {times.map((time, index) => (
                         <option key={index} value={time}>{time}</option>
                     ))}
                 </select>
-                <select name="priority" onChange={_handleChange } value={newCategory.priority}>
+                </label>
+                <label>
+                    Priority: 
+                    <select name="priority" onChange={_handleChange } value={newCategory.priority}>
                     {priorities.map((priority, index) => (
                         <option key={index} value={priority}>{priority}</option>
                     ))}
-                </select>
+                    </select>
+                </label>
                 <button>Add Category</button>
             </form>
         </div>

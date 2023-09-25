@@ -3,7 +3,7 @@ h1 {
 }
 
 .category-button {
-    background-color: #00B5B5; /* Green */
+    background-color: #00B5B5;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -16,7 +16,7 @@ h1 {
 }
 
 .category-button:hover {
-    background-color: #1DCFA2; /* Green */
+    background-color: #1DCFA2;
     color: white;
 }
 
@@ -34,8 +34,6 @@ h1 {
 /* Hortizontal Arrows */
 .grid-container.horizontal::before {
     content: '';
-    width: 0;
-    height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-right: 20px solid black;
@@ -47,8 +45,6 @@ h1 {
 
 .grid-container.horizontal::after {
     content: '';
-    width: 0;
-    height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-left: 20px solid black;
@@ -61,8 +57,6 @@ h1 {
 /* Vertical Arrows */
 .grid-container.vertical::before  {
     content: '';
-    width: 0;
-    height: 0;
     border-top: 20px solid black;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
@@ -74,8 +68,6 @@ h1 {
 
 .grid-container.vertical::after {
     content: '';
-    width: 0;
-    height: 0;
     border-bottom: 20px solid black;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
@@ -87,21 +79,22 @@ h1 {
 
 .grid-item {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    /* align-items: center; */
-    height: 400px;
+    grid-template-columns: 1fr 1fr;
+    height: 25em;
     overflow-y: auto;
 }
 
 .category {
+    /* position: relative; */
     border: 3px solid #FE6971;
-    width: 100px;
-    /* margin: 0 auto; */
     overflow-y: scroll;
     overflow-x: hidden;
-    height: 150px;
+    height: 175px;
+    width: 150px;
     margin-top: 20px;
-    /* margin-bottom: 30px; */
+    margin-left: 30px;
+    margin-right: 50px;
+    border-radius: 10px;
 }
 
 .category-button {
@@ -112,12 +105,14 @@ h1 {
     font-size: 11px;
     color: #EC6693;
     margin: 0 auto;
+    margin-top: 5px;
     display: flex;
     align-items: center;
+    font-size: 20px;
 }
 
 .delete-button {
-    background-color: #FFBB56; /* Green */
+    background-color: #FFBB56;
     border: none;
     color: white;
     padding: 3px 5px;
@@ -125,7 +120,7 @@ h1 {
 }
 
 .delete-button:hover {
-    background-color: #FC8255; /* Green */
+    background-color: #FC8255;
     color: white;
 }
 

@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AiFillAliwangwang } from 'react-icons/ai';
+import { AiOutlineHome } from 'react-icons/ai';
+import { FiFolderPlus } from 'react-icons/fi';
+import { BsFileEarmarkPlus } from 'react-icons/bs';
+import { GoSignOut } from 'react-icons/go';
 import * as userService from '../utilities/users-service';
 import './NavBar.css';
 import SearchBar from './SearchBar';
@@ -17,20 +21,20 @@ export default function NavBar({ user, setUser, categories, setSearchQuery }) {
       </div>
       <ul className='nav-links'>
         <Link className='link' to="/">
-          <AiFillAliwangwang />
+          <AiOutlineHome />
           <span className='tooltiptext'>Home</span>
         </Link>
         { categories.length > 0 && <Link className='link' to="/tasks/new">
-          <AiFillAliwangwang />
+          <BsFileEarmarkPlus />
           <span className='tooltiptext'>New Task</span>
         </Link>}
         <Link className='link' to="/categories/new">
-          <AiFillAliwangwang />
+          <FiFolderPlus />
           <span className='tooltiptext'>New Category</span>
         </Link>
         { user ? 
           <Link className='link' onClick={handleLogOut}>
-            <AiFillAliwangwang />
+            <GoSignOut />
             <span className='tooltiptext'>Logout</span>
           </Link>
         :

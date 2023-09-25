@@ -23,15 +23,16 @@ const TasksDetail = ({ tasks, setTasks }) => {
 
     return (
         <div key={singleTask._id} className="task-background">
+                <h1>{ singleTask.name }</h1>
             <ul>
-                <li>Task Name: <p>{ singleTask.name }</p></li>
-                <li>Task Category: { singleTask.category }</li>
-                <li>{ singleTask.time }</li>
-                <li>{ singleTask.priority }</li>
+                <li>Task Category: <p>{ singleTask.category }</p></li>
+                <li>Task Description: <p>{ singleTask.description }</p></li>
+                {/* <li>{ singleTask.time }</li>
+                <li>{ singleTask.priority }</li> */}
                 <li>Date Created: <p>{ new Date(singleTask.createdAt).toLocaleString() }</p></li>
                 <img src={singleTask.image} alt="" />
             </ul>
-            <button className='delete-button' onClick={ () => deleteTask(singleTask._id) }>
+            <button className='button-delete' onClick={ () => deleteTask(singleTask._id) }>
                 Delete
             </button>
             <button className="edit-button">

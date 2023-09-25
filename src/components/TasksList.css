@@ -1,6 +1,23 @@
 .task {
     position: relative;
-    display: inline-block;
+    display: block;
+}
+
+.task li {
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #00B5B5;
+    border-radius: 10px;
+    text-align: center;
+    list-style-type: none;
+    position: relative;
+    z-index: 1;
+}
+
+.task li:hover {
+    background-color: #1DCFA2;
 }
 
 .task button {
@@ -9,12 +26,12 @@
     left: 0;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-    
+.task a {
+    color: white;
+    text-decoration: none;
+    display: block;
 }
 
-li {
-    list-style-type: none;
+.task a:hover {
+    color: #FFBB56;
 }

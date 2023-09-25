@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './TasksList.css';
 import { Link } from 'react-router-dom';
 
