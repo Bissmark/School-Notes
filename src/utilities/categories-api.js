@@ -22,6 +22,6 @@ export async function deleteCategory(category) {
 }
 
 // Save Positions
-export async function saveCategoryPositions(categories) {
-    return sendRequest(BASE_URL, 'POST', categories);
+export async function saveCategoryPositions(categoryId, category) {
+    return sendRequest(BASE_URL, 'PUT', {categoryId, category});
 }

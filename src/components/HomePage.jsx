@@ -8,6 +8,7 @@ import './HomePage.css';
 
 export default function HomePage({ setCategories, categories, searchQuery }) {
     const [loading, setLoading] = useState(true);
+    const [categoryPosition, setCategoryPosition] = useState({});
 
     const quadrant1 = categories.filter((category) => category.time === 'Slow' && category.priority === 'Low');
     const quadrant2 = categories.filter((category) => category.time === 'Fast' && category.priority === 'Low');
@@ -19,7 +20,6 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
             try {
                 const categoriesRender = await categoriesServices.getCategories();
                 setCategories(categoriesRender);
-                console.log(categories)
                 setLoading(false);
             } catch (error) {
                 console.log(error);
@@ -28,6 +28,28 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
         };
         fetchCategories()
     }, []);
+
+    async function saveCategoryPositions() {
+        try {
+            for (let category of categories) {
+                const { _id } = category;
+                await categoriesServices.saveCategoryPositions(_id, category);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const handleDragStop = async (category, newPosition) => {
+        try {
+            category.position = newPosition;
+            setCategories([...categories]);
+        } catch (error) {
+            console.log(error);
+        }
+        saveCategoryPositions();
+    };
+
 
     async function deleteCategory(category) {
         try {
@@ -40,24 +62,6 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
         }
     }
 
-    async function saveCategoryPositions() {
-        try {
-            // Extract positions from categories and send them to the server
-            const positions = categories.map(({ _id, position }) => ({
-                _id,
-                position,
-            }));
-            // Send positions to the server using an API call
-            await categoriesServices.saveCategoryPositions(positions);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const eventLogger = (e, data) => {
-        console.log(data);
-        localStorage.setItem('defaultPosition', { valueX: data.x, valueY: data.y });
-    };
 
     if (loading) {
         return (
@@ -81,12 +85,13 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
             </div>
             <div className='grid-bounds'>
                 <div className='grid-container horizontal'>
-                    <div style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)'}}>
+                    <div style={{borderRight: '1px solid rgba(0, 0, 0, 0.8)', maxHeight: '100%'}}>
                         {quadrant1.map((category) => (
                             <Draggable 
                                 bounds='.grid-bounds'
-                                defaultPosition={{x: 0, y: 0}}
-                                onStop={eventLogger}
+                                defaultPosition={category.position || { x: 0, y: 0 }}
+                                onStop={(e, data) => handleDragStop(category, { x: data.x, y: data.y })}
+                                key={category._id}
                             >
                                 <div className='category' key={category._id}>
                                     <div className='title'>
@@ -98,9 +103,14 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                             </Draggable>
                         ))}
                     </div>
-                    <div style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)', marginBottom: '-1px'}}>
+                    <div style={{borderBottom: '1px solid rgba(0, 0, 0, 0.8)', marginBottom: '-1px', maxHeight: '100%'}}>
                         {quadrant3.map((category) => (
-                            <Draggable bounds='.grid-bounds'>
+                            <Draggable 
+                                bounds='.grid-bounds'
+                                defaultPosition={category.position || { x: 0, y: 0 }}
+                                onStop={(e, data) => handleDragStop(category, { x: data.x, y: data.y })}
+                                key={category._id}
+                            >
                                 <div className='category'  key={category._id} >
                                     <div className='title'>
                                         <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
@@ -111,9 +121,14 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                             </Draggable>
                         ))}
                     </div>
-                        <div style={{borderTop: '1px solid rgba(0, 0, 0, 0.8)'}}>
+                        <div style={{borderTop: '1px solid rgba(0, 0, 0, 0.8)', maxHeight: '100%'}}>
                                 {quadrant2.map((category) => (
-                                    <Draggable bounds='.grid-bounds'>
+                                    <Draggable 
+                                        bounds='.grid-bounds'
+                                        defaultPosition={category.position || { x: 0, y: 0 }}
+                                        onStop={(e, data) => handleDragStop(category, { x: data.x, y: data.y })}
+                                        key={category._id}
+                                    >
                                         <div className='category' key={category._id}>
                                             <div className='title'>
                                                 <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>
@@ -124,9 +139,14 @@ export default function HomePage({ setCategories, categories, searchQuery }) {
                                     </Draggable>
                                 ))}
                         </div>
-                        <div style={{borderLeft: '1px solid rgba(0, 0, 0, 0.8)', marginLeft: '-1px'}}>
+                        <div style={{borderLeft: '1px solid rgba(0, 0, 0, 0.8)', marginLeft: '-1px', maxHeight: '100%'}}>
                             {quadrant4.map((category) => (
-                                <Draggable bounds='.grid-bounds'>
+                                <Draggable 
+                                    bounds='.grid-bounds'
+                                    defaultPosition={category.position || { x: 0, y: 0 }}
+                                    onStop={(e, data) => handleDragStop(category, { x: data.x, y: data.y })}
+                                    key={category._id}
+                                >
                                     <div className='category' key={category._id}>
                                         <div className='title'>
                                             <button className='delete-button' onClick={ () => deleteCategory(category) }>&times;</button>

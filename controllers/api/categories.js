@@ -61,13 +61,17 @@ async function deleteCategory(req, res) {
 }
 
 async function updatePositions(req, res) {
-    console.log('lmao')
     try {
-        const categories = req.body;
-        categories.forEach(async (category) => {
-            await Category.updateOne({_id: category._id}, {position: category.position});
-        });
-        res.json(true);
+        const { x, y } = req.body.category.position;
+
+        const category = await Category.findByIdAndUpdate(
+            req.body.category._id,
+            { $set: { "position.x": x, "position.y": y } },
+            { new: true } // This option returns the updated document
+        );
+
+        console.log(category);
+        res.json(category);
     } catch (err) {
         console.log(err);
         res.status(400).json(err);

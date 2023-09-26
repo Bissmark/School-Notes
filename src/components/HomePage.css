@@ -31,6 +31,7 @@ h1 {
     grid-template-columns: 1fr 1fr;
     position: relative;
     min-height: 100%;
+    max-width: 100%;
 }
 
 
@@ -127,6 +128,6 @@ h1 {
 }
 
 .grid-bounds {
-    width: 1000px;
+    max-width: 1000px;
     height: 800px;
 }
