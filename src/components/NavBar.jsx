@@ -4,6 +4,7 @@ import { AiOutlineHome } from 'react-icons/ai';
 import { FiFolderPlus } from 'react-icons/fi';
 import { BsFileEarmarkPlus } from 'react-icons/bs';
 import { GoSignOut } from 'react-icons/go';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import * as userService from '../utilities/users-service';
 import './NavBar.css';
 import SearchBar from './SearchBar';
@@ -20,7 +21,10 @@ export default function NavBar({ user, setUser, categories, setSearchQuery }) {
         <SearchBar setSearchQuery={setSearchQuery} />
       </div>
       <ul className='nav-links'>
-        <Link className='link' to="/">
+        <input type='checkbox' id='checkbox_toggle' />
+        <label htmlFor='checkbox_toggle' className='hamburger'><GiHamburgerMenu /></label>
+        <div className='menu'>
+          <Link className='link' to="/">
           <AiOutlineHome />
           <span className='tooltiptext'>Home</span>
         </Link>
@@ -49,6 +53,8 @@ export default function NavBar({ user, setUser, categories, setSearchQuery }) {
             </Link>
           </>
         }
+        </div>
+        
       </ul>
       
       

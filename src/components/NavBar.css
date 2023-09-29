@@ -61,3 +61,39 @@
 .link:hover .tooltiptext {
     visibility: visible;
 }
+
+.menu {
+    display: flex;
+    font-size: 18px;
+}
+
+input[type=checkbox] { /* Hides the checkbox input */
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    user-select: none;
+}
+
+@media (max-width: 1200px) {
+    .menu {
+        display: none;
+        position: absolute;
+        background-color: purple;
+        right: 0;
+        top: 70px;
+        text-align: right;
+        padding: 16px 0;
+        border-radius: 5px;
+    }
+
+    input[type="checkbox"]:checked ~ .menu {
+        display: block;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+}
