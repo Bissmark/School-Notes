@@ -5,6 +5,7 @@ import "./AuthPage.css";
 
 const AuthPage = ({ setUser }) => {
     const [showSignup, setShowSignup] = useState(false);
+    // test
 
     return (
         <main>
